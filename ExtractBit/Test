@@ -1,0 +1,19 @@
+Тестирование:
+  Создание таблицы, которая будет содержать: число, индекс бита, результат.
+  Таблица заполняется с другой системы.
+
+CREATE TABLE DATA_SET
+(
+    C_NUMBER BIGINT,
+    C_INDEX BIGINT,
+    C_RESULT BIGINT
+);
+
+Проверка:
+
+--SELECT * FROM DATA_SET WHERE EXAMPLE.EXTRACT_BIT(C_NUMBER, C_INDEX) = C_RESULT;
+INSERT INTO DATA_SET (C_NUMBER, C_INDEX, C_RESULT) VALUES
+(5, 2, 1),
+(5, 1, 0),
+(6, 0, 0);
+COMMIT;
