@@ -18,3 +18,4 @@ COMMIT;
 
 SELECT * FROM DATA_SET WHERE EXAMPLE.EXTRACT_BIT(C_NUMBER, C_INDEX) <> C_RESULT; --непройденные тесты
 SELECT COUNT(*) FROM DATA_SET WHERE EXAMPLE.EXTRACT_BIT(C_NUMBER, C_INDEX) <> C_RESULT; --кол-во непройденных тестов
+SELECT EXAMPLE.EXTRACT_BIT(5, 1) FROM rdb$database; --тестовый запуск функции
