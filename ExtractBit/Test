@@ -19,3 +19,27 @@ COMMIT;
 SELECT * FROM DATA_SET WHERE EXAMPLE.EXTRACT_BIT(C_NUMBER, C_INDEX) <> C_RESULT; --непройденные тесты
 SELECT COUNT(*) FROM DATA_SET WHERE EXAMPLE.EXTRACT_BIT(C_NUMBER, C_INDEX) <> C_RESULT; --кол-во непройденных тестов
 SELECT EXAMPLE.EXTRACT_BIT(5, 1) FROM rdb$database; --тестовый запуск функции
+
+
+
+    public static void main(String[] agrs){
+        StringBuilder str = new StringBuilder();
+        for(int j = -1000; j <= 1000; j++){
+            for(int i = 0; i <= 5; i++){
+                str.append("INSERT INTO DATA_SET VALUES (");
+                str.append(j);
+                str.append(",");
+                str.append(i);
+                str.append(",");
+                str.append(bit(j,i));
+                str.append(");\n");
+            }
+        }
+        System.out.println(str);
+
+
+
+    }
+    static int bit(int n, int i){
+        return (n << i) & 1;
+    }
