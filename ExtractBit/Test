@@ -22,24 +22,26 @@ SELECT EXAMPLE.EXTRACT_BIT(5, 1) FROM rdb$database; --тестовый запу�
 
 
 
+package ru.example;
+
+public class Math {
     public static void main(String[] agrs){
         StringBuilder str = new StringBuilder();
-        for(int j = -1000; j <= 1000; j++){
-            for(int i = 0; i <= 5; i++){
+        for(int j = -100; j <= 100; j++){
+            for(short i = -1; i <= 5; i++){
                 str.append("INSERT INTO DATA_SET VALUES (");
                 str.append(j);
                 str.append(",");
                 str.append(i);
                 str.append(",");
-                str.append(bit(j,i));
+                str.append(extractBit(j,i));
                 str.append(");\n");
             }
         }
+        str.append("COMMIT;");
         System.out.println(str);
-
-
-
     }
-    static int bit(int n, int i){
-        return (n << i) & 1;
+    public static short extractBit(long n, short i) {
+        return (short) ((n >> i) & 1);
     }
+}
