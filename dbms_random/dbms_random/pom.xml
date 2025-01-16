@@ -21,6 +21,21 @@
             <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.firebirdsql.fbjava</groupId>
+            <artifactId>fbjava</artifactId>
+            <version>1.0.0-beta-1</version> <!-- Вы можете указать актуальную версию -->
+        </dependency>
+        <dependency>
+            <groupId>org.firebirdsql.jdbc</groupId>
+            <artifactId>jaybird</artifactId>
+            <version>5.0.1.java11</version> <!-- Убедитесь, что версия актуальна -->
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>19.18.0.0</version> <!-- Версия может быть другой -->
+        </dependency>
     </dependencies>
 
 </project>

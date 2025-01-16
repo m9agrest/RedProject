@@ -1,5 +1,6 @@
 package ru.example;
 
+import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
@@ -7,8 +8,8 @@ import java.util.Map;
 import java.util.Random;
 //https://docs.oracle.com/en/database/oracle/oracle-database/19/arpls/DBMS_RANDOM.html
 public class DBMS_Random {
-    private static final Random random = new Random();
-
+    //private static final Random random = new Random();
+    private final Random random = new Random();
     //Сохранение сида
     //call DBMS_RANDOM.SEED(12345);
     //SELECT dbms_random.random() from dual
@@ -36,6 +37,7 @@ public class DBMS_Random {
 
 
 
+
     /*допускает null
     pl:
     --call dbms_random.initialize(null)
@@ -51,10 +53,11 @@ public class DBMS_Random {
      */
     //устаревшие функции
     //(BINARY_INTEGER)
-    public static void initialize(int seed){
+    public void initialize(int seed){
+
         seed(seed);
     }
-    public static void terminate() {
+    public void terminate() {
         //ни на что не влияет
         /*
             call dbms_random.initialize(12)
@@ -86,11 +89,11 @@ public class DBMS_Random {
     не допускает null
  */
     //(BINARY_INTEGER)
-    public static void seed(int seed) {
+    public void seed(int seed) {
         random.setSeed(seed);
     }
     //(VARCHAR2)
-    public static void seed(String seed) {
+    public void seed(String seed) {
         if(seed == null){
             throw new IllegalArgumentException("Seed is null.");
         }
@@ -102,17 +105,17 @@ public class DBMS_Random {
     }
 
     //BINARY_INTEGER ()
-    public static int random() {
+    public int random() {
         return random.nextInt(); //Returns a random integer greater or equal to -power(2,31) and less than power(2,31)
     }
 
     //NUMBER ()
-    public static BigDecimal value(){
+    public BigDecimal value(){
         BigDecimal val = new BigDecimal(Math.abs(random()));
         return val.divide(new BigDecimal(Integer.MAX_VALUE), 38, RoundingMode.HALF_UP);
     }
     //NUMBER (NUMBER, NUMBER)
-    public static BigDecimal value(BigDecimal low, BigDecimal high){
+    public BigDecimal value(BigDecimal low, BigDecimal high){
         if (low.compareTo(high) > 0) {
             BigDecimal temp = low;
             low = high;
@@ -122,7 +125,7 @@ public class DBMS_Random {
     }
 
     //NUMBER ()
-    public static BigDecimal normal() {
+    public BigDecimal normal() {
         //https://torofimofu.blogspot.com/2018/02/oracle-11g-ii.html?m=1
         return BigDecimal.valueOf(random.nextGaussian());
     }
@@ -141,7 +144,12 @@ public class DBMS_Random {
 
 
     //VARCHAR2 (CHAR, NUMBER)
-    public static String string(String opt, int len){
+    public String string(String opt, int len){
+        /*try (PrintWriter out = new PrintWriter("C:/Users/mina987/Desktop/RedProject/log.txt")) {
+            out.println(opt);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }*/
         if(opt == null || opt.length() != 1){
             throw new IllegalArgumentException("The opt must be a single character.");
         }
@@ -195,8 +203,9 @@ public class DBMS_Random {
     -4: 37
     4: 30
 
-    test NORMAL()
+    test NORMAL()*/
     public static void main(String[] arg){
+        /*
         Map<Integer, Integer> map = new HashMap<>();
         for(int i = 0; i < 1000000; i++){
             double a = random.nextGaussian();
@@ -206,7 +215,9 @@ public class DBMS_Random {
         }
         for(Map.Entry<Integer, Integer> data : map.entrySet()){
             System.out.println(data.getKey() + ": " + data.getValue());
-        }
+        }*/
+
     }
-    */
+    /**/
+
 }

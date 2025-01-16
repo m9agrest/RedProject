@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Testing {
+    private static DBMS_Random DBMS_Random = new DBMS_Random();
     private static final int Round = 100;
     private static final int Seed = 125;
 
@@ -81,7 +82,4 @@ public class Testing {
         int rand2 = DBMS_Random.random();
         assertEquals(rand1, rand2, "метод seed() не работает");
     }
-
-
-
 }
